@@ -1,0 +1,17 @@
+{% assign folders = site.pages | group_by: "dir" %}
+
+{% for folder in folders %}
+  {% assign dirname = folder.name | split: "/" | reject: "" | last %}
+
+  {% if dirname != nil and dirname != "" %}
+    <div>
+      <strong>{{ dirname }}</strong>
+
+      {% for page in folder.items %}
+        {% if page.name != "index.md" %}
+          <a href="{{ page.url }}">{{ page.title }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endfor %}
