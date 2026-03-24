@@ -1,13 +1,13 @@
 ---
 layout: default
-title: websites
+title: laylasaunders.co.uk
 created: 2026-03-24
 updated: 2026-03-24
 right_sidebar:
   - title: Related
     links:
-      - text: file page template
-        url: /templates/file page/
+      - text: folder page template
+        url: /templates/folder page/
       - text: style guide
         url: /templates/style guide/
   - title: Resources
@@ -17,5 +17,4 @@ right_sidebar:
 ---
 
 
-this is the folder page template for the layla wiki!
-{% include folder-tree.html %}
+this is the file page template for the layla wiki!

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: websites
+title: style guide
 created: 2026-03-24
 updated: 2026-03-24
 right_sidebar:
@@ -8,8 +8,8 @@ right_sidebar:
     links:
       - text: file page template
         url: /templates/file page/
-      - text: style guide
-        url: /templates/style guide/
+      - text: folder page template
+        url: /templates/folder page/
   - title: Resources
     links:
       - text: why is the date of this page 1984?
@@ -17,5 +17,4 @@ right_sidebar:
 ---
 
 
-this is the folder page template for the layla wiki!
-{% include folder-tree.html %}
+this is the style guide for the wiki! i will update this as required...
