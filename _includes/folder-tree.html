@@ -1,0 +1,20 @@
+{% assign current = page.url %}
+{% assign pages = site.pages | sort: "url" %}
+
+<ul class="folder-tree">
+  {% for p in pages %}
+    {% if p.url != current and p.url contains current and p.name == "index.md" %}
+
+      {% assign depth = p.url | split: '/' | size %}
+      {% assign current_depth = current | split: '/' | size %}
+      {% assign depth = depth | minus: current_depth %}
+
+      <li class="level-{{ depth }}">
+        <a href="{{ p.url | relative_url }}">
+          {{ p.title }}
+        </a>
+      </li>
+
+    {% endif %}
+  {% endfor %}
+</ul>

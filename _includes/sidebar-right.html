@@ -1,0 +1,18 @@
+<!-- Layla Saunders, 24/03/2026 -->
+<!-- © wtfpl (www.wtfpl.net) -->
+
+<div class="sidebar-title">More</div><br>
+{% if page.right_sidebar %}
+  {% for section in page.right_sidebar %}
+    <div class="sidebar-section">
+      <div class="section-title">{{ section.title }}</div>
+      <ul>
+        {% for link in section.links %}
+          <li>
+            <a href="{{ link.url }}">{{ link.text }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+{% endif %}

@@ -1,17 +1,19 @@
-{% assign folders = site.pages | group_by: "dir" %}
+<!-- Layla Saunders, 24/03/2026 -->
+<!-- © wtfpl (www.wtfpl.net) -->
 
-{% for folder in folders %}
-  {% assign dirname = folder.name | split: "/" | reject: "" | last %}
-
-  {% if dirname != nil and dirname != "" %}
-    <div>
-      <strong>{{ dirname }}</strong>
-
-      {% for page in folder.items %}
-        {% if page.name != "index.md" %}
-          <a href="{{ page.url }}">{{ page.title }}</a>
-        {% endif %}
-      {% endfor %}
-    </div>
-  {% endif %}
-{% endfor %}
+{% assign pages = site.pages | sort: "url" %}
+<div class="sidebar-title">
+  <a href="{{ '/' | relative_url }}">
+    {{ site.title }}
+  </a>
+</div>
+<ul class="tree">
+  {% for page in pages %}
+    {% if page.name == "index.md" %}
+      {% assign depth = page.url | split: "/" | size | minus: 2 %}
+      <li class="folder level-{{ depth }}">
+        <a href="{{ page.url }}">{{ page.title }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

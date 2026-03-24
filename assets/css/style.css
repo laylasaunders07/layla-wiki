@@ -1,0 +1,217 @@
+/* Layla Saunders, 24/03/2026 */
+/* © wtfpl (www.wtfpl.net) */
+
+/* variables */
+
+:root {
+  --background: #ffffff;
+}
+
+/* main styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    background-color: var(--background);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%
+}
+
+.sidebar {
+  width: 250px;
+  background: #f4f4f4;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.sidebar.left {
+  position: relative;
+  left: 0;
+  height: auto;
+}
+
+.sidebar-title {
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 10px 8px;
+}
+
+.sidebar-title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 20px;
+}
+
+.tree {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tree a {
+  display: block;
+  padding: 4px 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.tree a:hover {
+  background: #ddd;
+}
+
+.file {
+  padding-left: 15px;
+}
+
+/* indentation levels */
+.level-0 { padding-left: 0px; }
+.level-1 { padding-left: 15px; }
+.level-2 { padding-left: 30px; }
+.level-3 { padding-left: 45px; }
+.level-4 { padding-left: 60px; }
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar.left {
+    order: 1;
+  }
+
+  .content {
+    order: 2;
+  }
+
+  .sidebar.right {
+    order: 3;
+  }
+}
+
+.sidebar-section {
+  margin-bottom: 15px;
+}
+
+.section-title {
+  font-weight: bold;
+  margin: 10px 8px 5px;
+}
+
+.sidebar-section ul {
+  list-style: none;
+  padding-left: 8px;
+  margin: 0;
+}
+
+.sidebar-section li a {
+  display: block;
+  padding: 4px 8px;
+}
+
+/* mobile header */
+.mobile-header {
+  display: none;
+  height: 50px;
+  background: #f4f4f4;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.mobile-header button {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-header .site-title {
+  margin-left: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* mobile layout */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .mobile-header {
+    display: flex;
+  }
+
+  /* hide left sidebar by default */
+  .sidebar.left {
+    position: fixed;
+    top: 50px;
+    left: -260px;
+    height: calc(100% - 50px);
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+
+  /* when open */
+  .sidebar.left.open {
+    left: 0;
+  }
+
+  .content {
+    padding-top: 10px;
+  }
+
+  .sidebar.right {
+    position: relative;
+    width: 100%;
+  }
+}
+
+.page-meta {
+  font-size: 0.85em;
+  margin-bottom: 10px;
+}
+
+.page-title {
+  font-size: large;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.folder-tree {
+  list-style: none;
+  padding-left: 0;
+}
+
+.folder-tree li {
+  margin: 2px 0;
+}
+
+.folder-tree .level-0 { padding-left: 0px; }
+.folder-tree .level-1 { padding-left: 15px; }
+.folder-tree .level-2 { padding-left: 30px; }
+.folder-tree .level-3 { padding-left: 45px; }
+.folder-tree .level-4 { padding-left: 60px; }
+
+.folder-tree a {
+  display: block;
+  padding: 4px 8px;
+  text-decoration: none;
+  color: inherit;
+}

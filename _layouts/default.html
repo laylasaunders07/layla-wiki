@@ -1,24 +1,82 @@
+<!-- Layla Saunders, 24/03/2026 -->
+<!-- © wtfpl (www.wtfpl.net) -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <title>{{ page.title }}</title>
-  <style>
-    body { display: flex; font-family: sans-serif; }
-    .sidebar { width: 250px; background: #f4f4f4; padding: 10px; }
-    .content { flex: 1; padding: 20px; }
-    a { display: block; margin: 5px 0; }
-  </style>
 </head>
 <body>
-
-  <div class="sidebar">
-    {% include sidebar.html %}
+  <div class="mobile-header">
+    <button id="menu-toggle">☰</button>
+    <div class="site-title">
+      <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    </div>
   </div>
+  <div class="layout">
 
-  <div class="content">
-    {{ content }}
+    <aside class="sidebar left" id="left-sidebar">
+      {% include sidebar.html %}
+    </aside>
+
+    <main class="content">
+      <div class="page-meta">
+        {% if page.url != '/' %}
+          <nav class="breadcrumbs">
+            <a href="{{ '/' | relative_url }}">Home</a>
+
+            {% assign parts = page.url | split: '/' %}
+            {% assign path = '' %}
+
+            {% for part in parts %}
+              {% if part != '' %}
+                {% assign path = path | append: '/' | append: part %}
+                /
+                <a href="{{ path | relative_url }}">
+                  {{ part | replace: '-', ' ' | capitalize }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </nav>
+        {% endif %}
+        <span class="page-title"><h1>{{ page.title }}</h1></span>
+        <i>
+        {% if page.created %}
+          <div>Created: {{ page.created }}</div>
+        {% endif %}
+
+        {% if page.updated %}
+          <div>Updated: {{ page.updated }}</div>
+        {% endif %}
+
+        <p>Hits: <span id="counter">loading</span></p>
+        </i>
+      </div>
+      {{ content }}
+    </main>
+
+    <aside class="sidebar right">
+      {% include sidebar-right.html %}
+    </aside>
+
   </div>
+  <script>
+    document.getElementById("menu-toggle").addEventListener("click", () => {
+      document.getElementById("left-sidebar").classList.toggle("open");
+    });
 
+  fetch("https://wiki.silly-7f7.workers.dev/increment/{{ page.title | slugify }}")
+      .then(res => res.json())
+      .then(data => {
+      document.getElementById("counter").textContent = data.count;
+      })
+      .catch(err => {
+      console.error(err);
+      document.getElementById("counter").textContent = "—";
+      });
+  </script>
 </body>
 </html>
